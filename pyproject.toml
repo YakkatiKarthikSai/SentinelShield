@@ -22,3 +22,6 @@ sentinelshield-simulate = "sentinelshield.simulation:main"
 
 [tool.setuptools.packages.find]
 include = ["sentinelshield*"]
+
+[tool.vercel]
+entrypoint = "sentinelshield.api:app"
