@@ -1,0 +1,5 @@
+[tool.setuptools.packages.find]
+include = ["sentinelshield*"]
+
+[tool.vercel]
+entrypoint = "sentinelshield.api:app"
