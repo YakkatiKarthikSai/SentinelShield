@@ -1,0 +1,25 @@
+services:
+  api:
+    build: .
+    command: python -m uvicorn sentinelshield.api:app --host 0.0.0.0 --port 8000
+    ports:
+      - "8000:8000"
+    environment:
+      SS_DATABASE_PATH: /app/data/sentinelshield_events.db
+    volumes:
+      - sentinelshield-data:/app/data
+
+  dashboard:
+    build: .
+    command: python -m streamlit run dashboard.py --server.address=0.0.0.0 --server.port=8501
+    ports:
+      - "8501:8501"
+    environment:
+      SS_DATABASE_PATH: /app/data/sentinelshield_events.db
+    volumes:
+      - sentinelshield-data:/app/data
+    depends_on:
+      - api
+
+volumes:
+  sentinelshield-data:
